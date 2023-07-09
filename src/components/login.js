@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -50,9 +51,12 @@ function Login() {
                     </a>
                   </div>
                   <div className="col-6">
-                    <a href="#" className="text-decoration-none text-primary">
+                    <Link
+                      to="/signup"
+                      className="text-decoration-none text-primary"
+                    >
                       Sign up
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </form>
