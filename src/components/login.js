@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { loginUser } from "../services/portfolio-service";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -13,8 +14,17 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    console.log("Hello World");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const user = await loginUser({ username, password });
+      console.log("Login successful: ", user);
+      // Perform any additional actions after successful login.
+    } catch (error) {
+      console.error("Login failed: ", error);
+      // Handle login error.
+    }
   };
 
   return (
@@ -53,8 +63,7 @@ function Login() {
                   <div className="col-6">
                     <Link
                       to="/signup"
-                      className="text-decoration-none text-primary"
-                    >
+                      className="text-decoration-none text-primary">
                       Sign up
                     </Link>
                   </div>
